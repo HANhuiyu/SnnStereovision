@@ -5,7 +5,7 @@
 # email: gvdikov93@gmail.com
 ###
 
-
+import network
 from network import CooperativeNetwork, Retina, ExternalInputReader, SNNSimulation
 import os
 
