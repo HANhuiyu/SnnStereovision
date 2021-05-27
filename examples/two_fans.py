@@ -6,7 +6,10 @@
 ###
 
 import network
-from network import CooperativeNetwork, Retina, ExternalInputReader, SNNSimulation
+#from network import CooperativeNetwork, Retina, ExternalInputReader, SNNSimulation
+from network.cooperative_net import *
+from network.simulation import *
+from ext_input import *
 import os
 
 def run_experiment_fans(with_visualization=True):
