@@ -6,6 +6,8 @@ import numpy as np
 # spike_time position_x position_y polarity retina
 # where spike_time is in microseconds, position_x and position_y are pixel coordinates in the range [1, dim_x(dim_y)]
 # polarity is the event type (0 OFF, 1 ON) and retina is the retina ID (0 left, 1 right) (or the other way round :D)
+
+
 class ExternalInputReader():
     def __init__(self, url="",
                  file_path="",
@@ -22,8 +24,9 @@ class ExternalInputReader():
         self.retinaRight = []
 
         if url is not "" and file_path is not "" or \
-            url is "" and file_path is "":
-            print("ERROR: Ambiguous or void input source address. Give either a URL or a local file path.")
+                url is "" and file_path is "":
+            print(
+                "ERROR: Ambiguous or void input source address. Give either a URL or a local file path.")
             return
 
         rawdata = None
@@ -69,7 +72,6 @@ class ExternalInputReader():
                         break
                 eventList.append([float(t), int(x), int(y), int(p), 0])
 
-
         # initialise the maximum time constant as the total simulation duration. This is needed to set a value
         # for pixels which don't spike at all, since the pyNN frontend requires so.
         # If they spike at the last possible time step, their firing will have no effect on the simulation.
@@ -81,8 +83,8 @@ class ExternalInputReader():
         retinaR = [[[] for y in range(dim_y)] for x in range(dim_x)]
 
         # last time a spike has occured for a pixel -- used to filter event bursts
-	# here, i don't think so han 06/05/2020
-	'''
+        # here, i don't think so han 06/05/2020
+        '''
         last_tL = [[0.0]]
         last_tR = [[0.0]]
         for x in range(0, dim_x):
@@ -92,21 +94,22 @@ class ExternalInputReader():
             last_tL.append([])
             last_tR.append([])
 	'''
-	last_tL =  [[[] for y in range(dim_y)] for x in range(dim_x)]
-	last_tR =  [[[] for y in range(dim_y)] for x in range(dim_x)]
-	for x in range(0, dim_x):
-	    for y in range(0, dim_y):
-		last_tL[x][y].append(-1.0)
-		last_tR[x][y].append(-1.0)
-	last_tL=np.array(last_tL)
-	last_tR=np.array(last_tR)
-	print("the length of the eventlist is ",len(eventList))
+        last_tL = [[[] for y in range(dim_y)] for x in range(dim_x)]
+        last_tR = [[[] for y in range(dim_y)] for x in range(dim_x)]
+        for x in range(0, dim_x):
+            for y in range(0, dim_y):
+                last_tL[x][y].append(-1.0)
+                last_tR[x][y].append(-1.0)
+        last_tL = np.array(last_tL)
+        last_tR = np.array(last_tR)
+        print("the length of the eventlist is ", len(eventList))
         # process each event in the event list and format the time and position. Distribute among the retinas respectively
         for evt in eventList:
             x = evt[1] - 1
             y = evt[2] - 1
             if not is_rawdata_time_in_ms:
-                t = evt[0] / 1000.0  # retina event time steps are in micro seconds, so convert to milliseconds
+                # retina event time steps are in micro seconds, so convert to milliseconds
+                t = evt[0] / 1000.0
             else:
                 t = evt[0]
 
@@ -122,7 +125,7 @@ class ExternalInputReader():
                             last_tR[x - crop_xmin][y - crop_ymin] = t
                     elif evt[4] == 0:
                         if t - last_tL[x - crop_xmin][y - crop_ymin] >= 1.0 and t <= max_time:
-                            #print "l", x, y, x-lowerBoundX, y-lowerBoundY
+                            # print "l", x, y, x-lowerBoundX, y-lowerBoundY
                             retinaL[x - crop_xmin][y - crop_ymin].append(t)
                             last_tL[x - crop_xmin][y - crop_ymin] = t
             else:
@@ -148,7 +151,7 @@ class ExternalInputReader():
         # store the formatted and filtered events which are to be passed to the retina constructors
         self.retinaLeft = retinaL
         self.retinaRight = retinaR
-	'''
+        '''
 	print('hello han here for the spikearray')
 	print(len(retinaL))
 	print(len(retinaL[1]))
@@ -156,4 +159,3 @@ class ExternalInputReader():
 	print('the spike arrary of the retinal is ', retinaL)
 	print('bonjour,han finir the print of the spikearray')
 	'''
-	

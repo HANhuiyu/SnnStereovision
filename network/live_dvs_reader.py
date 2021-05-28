@@ -2,6 +2,7 @@ from threading import Thread
 import time
 import serial as ser
 
+
 class DVSReader(Thread):
     def __init__(self, address='/dev/ttyUSB', port=0, baudrate=4000000, buflen=64, label=None,
                  crop_window=True, dim_x=1, dim_y=1,
@@ -40,7 +41,8 @@ class DVSReader(Thread):
         self.alive = True
         self.setDaemon(True)
 
-        self.dvsdev = ser.serial_for_url(address + str(port), baudrate, rtscts=True, dsrdtr=True, timeout=1)
+        self.dvsdev = ser.serial_for_url(
+            address + str(port), baudrate, rtscts=True, dsrdtr=True, timeout=1)
         self.dvs_init()
 
     def dvs_init(self):
@@ -77,9 +79,11 @@ class DVSReader(Thread):
                         # filter naively event bursts (i.e. assume very low probability of the same pixel spiking next)
                         if x != lastx or y != lasty:
                             # normalize pixel coordinates and send spike in the corresponding population and neuron within it
-                            injector_label = (x - self.lowerBoundX) / n_pixel_cols_per_injector_pop
+                            injector_label = (
+                                x - self.lowerBoundX) / n_pixel_cols_per_injector_pop
                             injectorNeuronID = (y - self.lowerBoundY) \
-                                               + ((x - self.lowerBoundX) % n_pixel_cols_per_injector_pop) * self.dim_y
+                                + ((x - self.lowerBoundX) %
+                                   n_pixel_cols_per_injector_pop) * self.dim_y
                             self.live_connection.send_spike(label="{0}_{1}".format(self.label, injector_label),
                                                             neuron_id=injectorNeuronID,
                                                             send_full_keys=False)
