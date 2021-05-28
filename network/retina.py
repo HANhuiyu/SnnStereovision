@@ -15,8 +15,8 @@ class Retina(object):
             "ERROR: Dimensionality of retina's spiking times is bad. Retina initialization failed."
 
         if min_disparity != 0:
-            print "WARNING: The minimum disparity is not 0. " \
-                  "This may lead to nonsensical results or failure as the network is not tested thoroughly."
+            print ("WARNING: The minimum disparity is not 0. " \
+                  "This may lead to nonsensical results or failure as the network is not tested thoroughly.")
 
         self.label = label
         self.experiment_name = experiment_name
@@ -25,18 +25,18 @@ class Retina(object):
         self.use_prerecorded_input = use_prerecorded_input
 
         if verbose:
-            print "INFO: Creating Spike Source: {0}".format(label)
+            print ("INFO: Creating Spike Source: {0}".format(label))
 	# for test if the spike time is empty
 	'''
 	print('aaaand the spikes times shoule be same as above not empty right?')
 	print(spike_times)
 	print('finish print the spike_times')
-	
+
 	print('print the spiketimes in the x')
 	for x in range(0, dimension_x):
 		print('in the x of',x,'the spike timeis',spike_times[x])
 	print('finish print the spikes time')
-	'''	
+	'''
         #import spynnaker.pyNN as ps
         import pyNN.spiNNaker as ps
         self.pixel_columns = []
@@ -52,7 +52,7 @@ class Retina(object):
                 self.pixel_columns.append(col_of_pixels)
                 self.labels.append(retina_label)
                 if record_spikes:
-                    col_of_pixels.record('spikes') # here the record don't fonction normalement 
+                    col_of_pixels.record('spikes') # here the record don't fonction normalement
 
         else:
             import spynnaker_external_devices_plugin.pyNN as sedp
@@ -84,14 +84,14 @@ class Retina(object):
 	#here is the same problem that as the network and we can test if i thought is right
     def get_spikes(self, sort_by_time=True, save_spikes=True):
 	print('i am arrive here')
-	
+
 	neo_per_population= [x.get_data(variables=["spikes"]) for x in self.pixel_columns]
         spikes_per_population = [x.segments[0].spiketrains for x in neo_per_population]
-	
-	#for test the get spike 
+
+	#for test the get spike
 	for col in spikes_per_population:
 		print('the col of spikes is',col)
-	
+
         spikes = list()
         for col_index, col in enumerate(spikes_per_population, 0):  # it is 0-indexed
             # for each spike in the population extract the timestamp and x,y coordinates
@@ -103,7 +103,7 @@ class Retina(object):
 	        i=i+1
 		for spike in spiketrains:
                 	spikes.append((round(spike, 1), x_coord+1, y_coord+1))	# pixel coordinates are 1-indexed
-	
+
 	#print('spikes before the sort by time of retina',spikes)
         if sort_by_time:
             spikes.sort(key=lambda x: x[0])
