@@ -396,7 +396,7 @@ class CooperativeNetwork(object):
     with the corresponding pixel location and disparities."""
     def get_spikes(self, sort_by_time=True, save_spikes=True):
         global same_disparity_indices, _retina_proj_l
-	    neo_per_population = [x[1].get_data(variables=["spikes"]) for x in self.network]
+	neo_per_population = [x[1].get_data(variables=["spikes"]) for x in self.network]
         spikes_per_population = [x.segments[0].spiketrains for x in neo_per_population]
 	'''
         #for test the format of the spikes
