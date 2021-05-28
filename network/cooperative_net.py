@@ -415,30 +415,39 @@ class CooperativeNetwork(object):
         # for each column population in the network, find the x,y coordinates corresponding to the neuron
         # and the disparity. Then write them in the list and sort it by the timestamp value.
         for col_index, col in enumerate(spikes_per_population, 0):  # it is 0-indexed
+
             # find the disparity
 	    #for test the spike of the network
 	    #print('the spiketrains of the collector',col)
 
             disp = self.min_disparity
+            x_coord = 0
+
             for d in range(0, self.max_disparity + 1):
+
                 if col_index in same_disparity_indices[d]:
+
                     disp = d + self.min_disparity
                     break
-	    x_coord = 0
+	    
             for p in range(0, self.dim_x):
                 if col_index in _retina_proj_l[p]:
                     x_coord = p
                     break
+
             # for each spike in the population extract the timestamp and x,y coordinates
 	    i=0
             for spiketrains in col:
                 y_coord = i
 		i=i+1
 		for spike in spiketrains:
+
+
 			#y_coord=spiketrains.index(spike) # and then should change with how to choice the y
 		#i think here is not right and i should change it
                 #y_coord = int(spike[0])
-                	spikes.append((round(spike, 1), x_coord+1, y_coord+1, disp))	# pixel coordinates are 1-indexed
+                    spikes.append((round(spike, 1), x_coord+1, y_coord+1, disp))	# pixel coordinates are 1-indexed
+
         if sort_by_time:
             spikes.sort(key=lambda x: x[0])
         if save_spikes:
