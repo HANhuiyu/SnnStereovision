@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 
+
 class InputAnalyser(object):
     def __init__(self,
                  sim_time_begin=0,
@@ -66,11 +67,11 @@ class InputAnalyser(object):
         plt.grid()
         plt.show()
 
-
     def stats(self):
         self.events = np.asarray(self.events)
         print("Median in x: {0}".format(np.median(self.events[:, 1])))
         print("Median in y: {0}".format(np.median(self.events[:, 2])))
+
 
 if __name__ == "__main__":
     ia = InputAnalyser(sim_time_begin=0000,
@@ -78,5 +79,3 @@ if __name__ == "__main__":
                        input_file="./input_data/Back_On_Front_Accel_Fixed_even.npz")
     ia.stats()
     ia.input_density()
-
-

@@ -70,12 +70,13 @@ if __name__ == "__main__":
 
     # Visualize the results (disparity histograms and 3D scatter animation)
     # network_dimensions = SNN_Network.get_network_dimensions()
-    network_dimensions = {'dim_x':dx, 'dim_y':dy, 'min_d':0, 'max_d':max_d}
+    network_dimensions = {'dim_x': dx, 'dim_y': dy, 'min_d': 0, 'max_d': max_d}
     Results = vis.Visualizer(network_dimensions=network_dimensions,
                              experiment_name=experiment_name,
                              spikes_file="./spikes/Back_Front_0_spikes.dat")
     # Results.microensemble_voltage_plot(save_figure=True)
-    disps = Results.disparity_histogram(over_time=True, save_figure=True, show_interactive=True)
+    disps = Results.disparity_histogram(
+        over_time=True, save_figure=True, show_interactive=True)
     print(sum(disps))
     for i in range(max_d):
         print(i, 100*disps[i]/float(sum(disps)))

@@ -5,12 +5,13 @@
 ###
 
 
-import matplotlib
-matplotlib.use("Agg")	# needed for the ssh connection
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-import numpy as np
 import os
+import numpy as np
+from mpl_toolkits.mplot3d import Axes3D
+import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use("Agg")  # needed for the ssh connection
+
 
 class Visualizer(object):
 
@@ -19,17 +20,15 @@ class Visualizer(object):
                  spikes_file="",
                  membrane_potential_file="",
                  verbose=False,
-		 sim_time=1000):
+                 sim_time=1000):
         self.experiment_name = experiment_name.replace(" ", "_")
         self.network_dimensions = network_dimensions
 
         self.network_spikes_file = spikes_file
         self.network_voltage_file = membrane_potential_file
         self.spikes = []
-	self.sim_time = sim_time
-	print(self.sim_time)	
-
-	 
+        self.sim_time = sim_time
+        print(self.sim_time)
 
         if spikes_file:
             with open(self.network_spikes_file, 'rb') as events:
@@ -41,15 +40,17 @@ class Visualizer(object):
                             continue
                         else:
                             l = line.split()
-                            self.spikes.append((float(l[0]), int(l[1]), int(l[2]), int(l[3])))
-			    
+                            self.spikes.append(
+                                (float(l[0]), int(l[1]), int(l[2]), int(l[3])))
+
                     else:
                         is_data = True
-		
+
         else:
-            print("WARNING: Network spikes output file is not set. No spike data to visualize.")
-         
-	self.spikes = np.asarray(self.spikes)
+            print(
+                "WARNING: Network spikes output file is not set. No spike data to visualize.")
+
+        self.spikes = np.asarray(self.spikes)
 
         self.membrane_potential = {"bl": [], "br": [], "c": []}
 
@@ -66,15 +67,20 @@ class Visualizer(object):
                             l = line.split()
                             if l[0] == 'b':
                                 if l[2] == '0':
-                                    self.membrane_potential["bl"].append((float(l[3]), float(l[4])))
+                                    self.membrane_potential["bl"].append(
+                                        (float(l[3]), float(l[4])))
                                 else:
-                                    self.membrane_potential["br"].append((float(l[3]), float(l[4])))
+                                    self.membrane_potential["br"].append(
+                                        (float(l[3]), float(l[4])))
                             else:
-                                self.membrane_potential["c"].append((float(l[3]), float(l[4])))
+                                self.membrane_potential["c"].append(
+                                    (float(l[3]), float(l[4])))
                     else:
                         is_data = True
-        self.membrane_potential["br"] = np.asarray(self.membrane_potential["br"])
-        self.membrane_potential["bl"] = np.asarray(self.membrane_potential["bl"])
+        self.membrane_potential["br"] = np.asarray(
+            self.membrane_potential["br"])
+        self.membrane_potential["bl"] = np.asarray(
+            self.membrane_potential["bl"])
         self.membrane_potential["c"] = np.asarray(self.membrane_potential["c"])
 
         self.scatter = None
@@ -87,9 +93,12 @@ class Visualizer(object):
         ax2 = fig.add_subplot(312)
         ax3 = fig.add_subplot(313)
 
-        ax1.plot(self.membrane_potential["bl"][: , 0], self.membrane_potential["bl"][:, 1])
-        ax2.plot(self.membrane_potential["br"][:, 0], self.membrane_potential["br"][:, 1])
-        ax3.plot(self.membrane_potential["c"][:, 0], self.membrane_potential["c"][:, 1])
+        ax1.plot(self.membrane_potential["bl"][:, 0],
+                 self.membrane_potential["bl"][:, 1])
+        ax2.plot(self.membrane_potential["br"][:, 0],
+                 self.membrane_potential["br"][:, 1])
+        ax3.plot(self.membrane_potential["c"][:, 0],
+                 self.membrane_potential["c"][:, 1])
 
         plt.subplots_adjust(hspace=1)
 
@@ -99,7 +108,8 @@ class Visualizer(object):
 
         # set common labels
         fig.text(0.5, 0.04, 'time in ms', ha='center', va='center')
-        fig.text(0.06, 0.5, 'voltage in mV', ha='center', va='center', rotation='vertical')
+        fig.text(0.06, 0.5, 'voltage in mV', ha='center',
+                 va='center', rotation='vertical')
 
         if save_figure:
             if not os.path.exists("./figures"):
@@ -107,7 +117,8 @@ class Visualizer(object):
             i = 0
             while os.path.exists("./figures/{0}_voltage_{1}.png".format(self.experiment_name, i)):
                 i += 1
-            plt.savefig("./figures/{0}_voltage_{1}.png".format(self.experiment_name, i))
+            plt.savefig(
+                "./figures/{0}_voltage_{1}.png".format(self.experiment_name, i))
         if show_interactive:
             plt.show()
 
@@ -116,39 +127,39 @@ class Visualizer(object):
             print("WARNING: The disparity histogram plotter assumes that the spikes are already sorted by time."
                   "Otherwise, the results might be false.")
         if not over_time:
-	    disps = [x[3] for x in self.spikes]
-            disp_list=list(disps)
-	   
-	    x= range(0, self.network_dimensions['max_d'] - self.network_dimensions['min_d'] + 1)
-	    spikes_per_disparity=[]
-	    for dis in  x:
-	    	spikes_per_disparity.append(disp_list.count(dis))	
-             
-	    #spikes_per_disparity=np.array(spikes_per_disparity)
-            
-            #plt.bar(range(0, self.network_dimensions['max_d'] - self.network_dimensions['min_d'] + 1),
-                    #spikes_per_disparity, align='center')
-	    print(spikes_per_disparity)
-	    	
-	    plt.bar(x,spikes_per_disparity) 
-                    
+            disps = [x[3] for x in self.spikes]
+            disp_list = list(disps)
 
-	   
+            x = range(
+                0, self.network_dimensions['max_d'] - self.network_dimensions['min_d'] + 1)
+            spikes_per_disparity = []
+            for dis in x:
+                spikes_per_disparity.append(disp_list.count(dis))
+
+            # spikes_per_disparity=np.array(spikes_per_disparity)
+
+            # plt.bar(range(0, self.network_dimensions['max_d'] - self.network_dimensions['min_d'] + 1),
+                # spikes_per_disparity, align='center')
+            print(spikes_per_disparity)
+
+            plt.bar(x, spikes_per_disparity)
+
         else:
             disps = [x[3] for x in self.spikes]
 
             x = range(0, len(disps))
             y = disps
 
-            heatmap, xedges, yedges = np.histogram2d(y, x, bins=(self.network_dimensions['max_d'], 100))
+            heatmap, xedges, yedges = np.histogram2d(
+                y, x, bins=(self.network_dimensions['max_d'], 100))
             # extent = [xedges[0], xedges[-1], yedges[0], yedges[-1]]
 
             ax = plt.figure().add_subplot(111)
-	    #ax.xticks = np.arange(0, self.sim_time, 10)
-	    #print(self.sim_time)
-	    #ax.yticks = np.arange(0, self.network_dimensions['max_d'], 1)
-	    #ax.ylim =((0,self.network_dimensions['max_d'])) 
-	    #ax.xlim = ((0,self.sim_time))
+            #ax.xticks = np.arange(0, self.sim_time, 10)
+            # print(self.sim_time)
+            #ax.yticks = np.arange(0, self.network_dimensions['max_d'], 1)
+            #ax.ylim =((0,self.network_dimensions['max_d']))
+            #ax.xlim = ((0,self.sim_time))
 
             im = ax.imshow(heatmap,
                            extent=[0, 10, 0, self.network_dimensions['max_d']],
@@ -158,10 +169,10 @@ class Visualizer(object):
             ax.set_xlabel('Time in'+str(self.sim_time*0.001)+'s')
             ax.set_ylabel("Disparity")
             ax.set_aspect(0.5)
-            
-            
+
             cbar = plt.colorbar(im, fraction=0.046, pad=0.03)
-            cbar.set_label('Number of events per time slot('+str(self.sim_time*0.00001) +')s', rotation=270)
+            cbar.set_label('Number of events per time slot(' +
+                           str(self.sim_time*0.00001) + ')s', rotation=270)
             cbar.ax.get_yaxis().labelpad = 15
 
         if show_interactive:
@@ -173,8 +184,8 @@ class Visualizer(object):
             i = 0
             while os.path.exists("./figures/{0}_{1}.png".format(self.experiment_name, i)):
                 i += 1
-            plt.savefig("./figures/{0}_{1}.png".format(self.experiment_name, i))
-
+            plt.savefig(
+                "./figures/{0}_{1}.png".format(self.experiment_name, i))
 
         return [disps.count(c) for c in range(self.network_dimensions['min_d'], self.network_dimensions['max_d'])]
 
@@ -182,7 +193,8 @@ class Visualizer(object):
 
         if dimension == 2:
             if rotate:
-                print("WARNING: The rotate option is available only for the 3D animation. It will be ignored.")
+                print(
+                    "WARNING: The rotate option is available only for the 3D animation. It will be ignored.")
 
         scatter = _Scatter(visualizer=self,
                            dimension=dimension,
@@ -202,6 +214,7 @@ class _Scatter(object):
 
     """relative frame length is the length of each single frame measured as a fraction of
     the whole experiment duration. """
+
     def __init__(self, visualizer=None,
                  dimension=3,
                  relative_frame_length=0.01,
@@ -209,25 +222,29 @@ class _Scatter(object):
                  export_format='mp4'):
 
         self.visualizer = visualizer
-        self.dimension=dimension
+        self.dimension = dimension
 
-        self.relative_frame_length = relative_frame_length  # should be within (0.0, 1.0]
+        # should be within (0.0, 1.0]
+        self.relative_frame_length = relative_frame_length
 
         self.duration = self.visualizer.spikes[-1][0]       # in ms
         self.angle = -90
         self.rotate = rotate
         self.speedup = speedup_factor
 
-
         self.scatter_plot = None
 
-        self.window_size = self.duration * relative_frame_length            # some quantity in ms
-        self.window_step = self.window_size * smoothness_factor      # some quantity in ms
+        self.window_size = self.duration * \
+            relative_frame_length            # some quantity in ms
+        self.window_step = self.window_size * \
+            smoothness_factor      # some quantity in ms
         self.window_start = 0
         self.window_end = self.window_start + self.window_size
 
-        self.frame_count = int((self.duration - self.window_size) / self.window_step) + 1
-        self.fps = int((self.frame_count / (self.duration / 1000)) * self.speedup)
+        self.frame_count = int(
+            (self.duration - self.window_size) / self.window_step) + 1
+        self.fps = int(
+            (self.frame_count / (self.duration / 1000)) * self.speedup)
 
         if self.fps == 0:
             self.fps = 1
@@ -239,7 +256,8 @@ class _Scatter(object):
         self.file_format = export_format
         # print("duration", int((self.duration/1000+1)/speedup_factor))
         from moviepy.editor import VideoClip
-        self.anim = VideoClip(self._update_frame, duration=int((self.duration/1000+1)/speedup_factor))
+        self.anim = VideoClip(self._update_frame, duration=int(
+            (self.duration/1000+1)/speedup_factor))
 
     def _change_angle(self):
         self.angle = (self.angle + 0.5) % 360
@@ -250,7 +268,8 @@ class _Scatter(object):
             self.ax = self.fig.add_subplot(111, projection='3d')
             self.ax.set_xlim3d(0, self.visualizer.network_dimensions['dim_x'])
             self.ax.set_xlabel('x')
-            self.ax.set_ylim3d(self.visualizer.network_dimensions['max_d'], self.visualizer.network_dimensions['min_d'])
+            self.ax.set_ylim3d(
+                self.visualizer.network_dimensions['max_d'], self.visualizer.network_dimensions['min_d'])
             self.ax.set_ylabel('depth')
             self.ax.set_zlim3d(0, self.visualizer.network_dimensions['dim_y'])
             self.ax.set_zlabel('y')
@@ -306,7 +325,8 @@ class _Scatter(object):
                                                     )
                 if self.cbar_not_added:
                     cbar = self.fig.colorbar(self.scatter_plot)
-                    cbar.set_label('Perceived disparity in pixel units', rotation=270)
+                    cbar.set_label(
+                        'Perceived disparity in pixel units', rotation=270)
                     cbar.ax.get_yaxis().labelpad = 15
                     self.cbar_not_added = False
             else:
@@ -323,7 +343,8 @@ class _Scatter(object):
                 # find some better solution than this flag hack
                 if self.cbar_not_added:
                     cbar = self.fig.colorbar(self.scatter_plot)
-                    cbar.set_label('Perceived disparity in pixel units', rotation=270)
+                    cbar.set_label(
+                        'Perceived disparity in pixel units', rotation=270)
                     cbar.ax.get_yaxis().labelpad = 15
                     self.cbar_not_added = False
         else:
@@ -332,7 +353,8 @@ class _Scatter(object):
         return mplfig_to_npimage(self.fig)
 
     def show(self):
-        plt.show()  # or better use plt.draw()?, not sure but I think this might freeze when updating...
+        # or better use plt.draw()?, not sure but I think this might freeze when updating...
+        plt.show()
 
     def save(self):
         dim = "3D" if self.dimension == 3 else "2D"
@@ -341,9 +363,9 @@ class _Scatter(object):
             os.makedirs("./animations")
         i = 0
         while os.path.exists("./animations/{0}_{2}_{1}.gif"
-                                     .format(self.visualizer.experiment_name, i, dim)) or \
+                             .format(self.visualizer.experiment_name, i, dim)) or \
                 os.path.exists("./animations/{0}_{2}_{1}.mp4"
-                                       .format(self.visualizer.experiment_name, i, dim)):
+                               .format(self.visualizer.experiment_name, i, dim)):
             i += 1
         if self.file_format == 'gif':
             self.anim.write_gif(filename="./animations/{0}_{2}_{1}.gif"
