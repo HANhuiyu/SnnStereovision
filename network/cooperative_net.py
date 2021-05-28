@@ -141,7 +141,7 @@ class CooperativeNetwork(object):
             _retina_proj_l = [[0]]
             _retina_proj_r = [[0]]
             same_disparity_indices = [[0]]
-            
+
         return network
 
     def _interconnect_neurons(self, network, verbose=False):
@@ -160,7 +160,7 @@ class CooperativeNetwork(object):
 
         # connect the inhibitory neurons to the cell output neurons
         if verbose:
-            print "INFO: Interconnecting Neurons. This may take a while."
+            print ("INFO: Interconnecting Neurons. This may take a while.")
         for ensemble in network:
             ps.Projection(ensemble[0], ensemble[1], ps.FromListConnector(connList), receptor_type='inhibitory')
 
@@ -170,9 +170,9 @@ class CooperativeNetwork(object):
             "ERROR: Network is not initialised! Interconnecting for inhibitory and excitatory patterns failed."
 
         if verbose and self.cell_params['topological']['radius_i'] < self.dim_x:
-            print "WARNING: Bad radius of inhibition. Uniquness constraint cannot be satisfied."
+            print ("WARNING: Bad radius of inhibition. Uniquness constraint cannot be satisfied.")
         if verbose and 0 <= self.cell_params['topological']['radius_e'] > self.dim_x:
-            print "WARNING: Bad radius of excitation. "
+            print ("WARNING: Bad radius of excitation. ")
 
         # create lists with inhibitory along the Retina Right projective line
         nbhoodInhL = []
@@ -181,7 +181,7 @@ class CooperativeNetwork(object):
         nbhoodEcxY = []
         # used for the triangular form of the matrix in order to remain within the square
         if verbose:
-            print "INFO: Generating inhibitory and excitatory connectivity patterns."
+            print ("INFO: Generating inhibitory and excitatory connectivity patterns.")
         # generate rows
         limiter = self.max_disparity - self.min_disparity + 1
         ensembleIndex = 0
@@ -241,7 +241,7 @@ class CooperativeNetwork(object):
         same_disparity_indices = nbhoodExcX
 
         if verbose:
-            print "INFO: Connecting neurons for internal excitation and inhibition."
+            print("INFO: Connecting neurons for internal excitation and inhibition.")
 
         for row in nbhoodInhL:
             for pop in row:
@@ -288,7 +288,7 @@ class CooperativeNetwork(object):
     def _connect_spike_sources(self, retinae=None, verbose=False):
 
         if verbose:
-            print "INFO: Connecting Spike Sources to Network."
+            print( "INFO: Connecting Spike Sources to Network.")
 
         global _retina_proj_l, _retina_proj_r
 
@@ -430,7 +430,7 @@ class CooperativeNetwork(object):
                 y_coord = i
 		i=i+1
 		for spike in spiketrains:
-			#y_coord=spiketrains.index(spike) # and then should change with how to choice the y 
+			#y_coord=spiketrains.index(spike) # and then should change with how to choice the y
 		#i think here is not right and i should change it
                 #y_coord = int(spike[0])
                 	spikes.append((round(spike, 1), x_coord+1, y_coord+1, disp))	# pixel coordinates are 1-indexed
@@ -445,7 +445,7 @@ class CooperativeNetwork(object):
             with open('./spikes/{0}_{1}_spikes.dat'.format(self.experiment_name, i), 'w') as fs:
 		# for open the last spike file
 		self.i=i
-		print('the value of i is',i) 
+		print('the value of i is',i)
                 self._write_preamble(fs)
                 fs.write("### DATA FORMAT ###\n"
                         "# Description: All spikes from the Collector Neurons are recorded. The disparity is inferred "
