@@ -5,7 +5,7 @@
 ###
 
 # the name of the method of each .py
-from network import CooperativeNetwork, Retina, ExternalHdf5InputReader, SNNSimulation
+from network import CooperativeNetwork, Retina, SNNSimulation #ExternalHdf5InputReader
 import os
 
 
