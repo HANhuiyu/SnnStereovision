@@ -31,7 +31,7 @@ class Visualizer(object):
         print(self.sim_time)
 
         if spikes_file:
-            with open(self.network_spikes_file, 'rb') as events:
+            with open(self.network_spikes_file, 'r') as events:
                 is_data = False
                 for line in events:
                     # skip preambles and other logged information
