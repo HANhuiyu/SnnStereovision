@@ -151,7 +151,7 @@ class ExternalInputReader():
         # store the formatted and filtered events which are to be passed to the retina constructors
         self.retinaLeft = retinaL
         self.retinaRight = retinaR
-	'''
+        '''
         print('hello han here for the spikearray')
         print(len(retinaL))
         print(len(retinaL[1]))
