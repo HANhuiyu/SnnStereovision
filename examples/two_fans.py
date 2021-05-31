@@ -11,6 +11,7 @@ from network.cooperative_net import *
 from network.simulation import *
 from network.ext_input import *
 from network.retina import *
+from visualizer.visualizer import *
 import os
 
 
@@ -79,7 +80,7 @@ def run_experiment_fans(with_visualization=True):
     print("boisoir,jai finis le simulation!")
     i = SNN_Network.i
     if with_visualization:
-        from visualizer import Visualizer
+        
         network_dimensions = SNN_Network.get_network_dimensions()
 
         viz = Visualizer(network_dimensions=network_dimensions,
