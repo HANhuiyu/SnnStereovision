@@ -9,7 +9,7 @@ import network
 #from network import CooperativeNetwork, Retina, ExternalInputReader, SNNSimulation
 from network.cooperative_net import *
 from network.simulation import *
-from ext_input import *
+from network.ext_input import *
 import os
 
 
