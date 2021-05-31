@@ -468,14 +468,19 @@ class CooperativeNetwork(object):
                 y_coord = i
                 i = i+1
                 for spike in spiketrains:
+                    spikes.append(
+                        (round(spike, 1), x_coord+1, y_coord+1, disp))
 
                     # y_coord=spiketrains.index(spike) # and then should change with how to choice the y
                     # i think here is not right and i should change it
                     #y_coord = int(spike[0])
                     # pixel coordinates are 1-indexed
-                    spikes.append(
-                        (round(spike, 1), x_coord+1, y_coord+1, disp))
 
+        print("it is fir the test of the spike that write in the file")
+        print(spikes[0])
+        print(spikes[0][0])
+        print(spikes[0][1])
+        print(spikes[0][2])
         if sort_by_time:
             spikes.sort(key=lambda x: x[0])
         if save_spikes:
