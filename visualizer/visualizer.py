@@ -40,6 +40,7 @@ class Visualizer(object):
                             continue
                         else:
                             l = line.split()
+                            '''
                             print(l[0])
                             print(l[1])
                             print(l[2])
@@ -50,9 +51,10 @@ class Visualizer(object):
                             print(type(l[1]))
 
                             print(type(l[2]))
+                            '''
 
                             self.spikes.append(
-                                (float(l[0]), int(l[1]), int(l[2]), int(l[3])))
+                                (float(l[0]), int(l[2]), int(l[3]), int(l[4])))
 
                     else:
                         is_data = True
