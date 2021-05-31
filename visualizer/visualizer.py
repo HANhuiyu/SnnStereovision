@@ -31,11 +31,11 @@ class Visualizer(object):
         print(self.sim_time)
 
         if spikes_file:
-            with open(self.network_spikes_file, 'r') as events:
+            with open(self.network_spikes_file, 'rb') as events:
                 is_data = False
                 for line in events:
                     # skip preambles and other logged information
-                    if not "DATA START" in line and not "DATA END" in line:
+                    if not b'DATA START' in line and not b'DATA END' in line:
                         if not is_data:
                             continue
                         else:
