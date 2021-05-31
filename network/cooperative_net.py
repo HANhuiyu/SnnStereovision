@@ -217,7 +217,8 @@ class CooperativeNetwork(object):
                 else:
                     nbhoodInhR[shift + shiftGlob].append(e)
                 shift += 1
-
+	print("the L is ",nbhoodInhL)
+	print("the R is ",nbhoodInhR)
         # generate all diagonals
         for diag in map(None, *nbhoodInhL):
             sublist = []
