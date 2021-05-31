@@ -224,7 +224,7 @@ class CooperativeNetwork(object):
         for diag in map(None, *nbhoodInhL):
             sublist = []
             for elem in diag:
-                if elem is not None:
+                if elem is not None:get
                     sublist.append(elem)
             nbhoodExcX.append(sublist)
         '''
@@ -418,19 +418,25 @@ class CooperativeNetwork(object):
     def get_spikes(self, sort_by_time=True, save_spikes=True):
 
         global same_disparity_indices, _retina_proj_l
+        '''
         for x in self.network:
             neo_per_population = [x[1].get_data(variables=["spikes"])]
-        #neo_per_population = [x[1].get_data(variables=["spikes"]) for x in self.network]
-        #spikes_per_population = [x.segments[0].spiketrains for x in neo_per_population]
+	'''
+        neo_per_population = [x[1].get_data(
+            variables=["spikes"]) for x in self.network]
+        spikes_per_population = [
+            x.segments[0].spiketrains for x in neo_per_population]
+        '''
         for x in neo_per_population:
             spikes_per_population = [x.segments[0].spiketrains]
+        
         # for test the format of the spikes
         print(len(spikes_per_population), 'han')
         print(len(spikes_per_population[0]), 'first')
         print(len(spikes_per_population[1]), '2')
         print(len(spikes_per_population[20]), 'derniere')
         #
-
+        '''
         spikes = list()
         # for each column population in the network, find the x,y coordinates corresponding to the neuron
         # and the disparity. Then write them in the list and sort it by the timestamp value.
