@@ -109,7 +109,7 @@ class CooperativeNetwork(object):
 
         network = []
         neural_params = self.cell_params['neural']
-        for x in range(0, self.size):
+        for x in range(0, int(self.size)):
             blocker_columns = ps.Population(self.dim_y * 2,
                                             ps.IF_curr_exp,
                                             {'tau_syn_E': neural_params['tau_E'],
