@@ -22,11 +22,11 @@ def run_experiment_fans(with_visualization=True):
     """
     experiment_name = "Back_Front"
     experiment_duration = 10000.0  # in ms
-    dx = 6  # in pixels
-    dy = 6  # in pixels
-    max_d = 5  # in pixels
-    crop_xmin = 70  # in pixels
-    crop_ymin = 40  # in pixels
+    dx = 90  # in pixels
+    dy = 90  # in pixels
+    max_d = 20  # in pixels
+    crop_xmin = 0  # in pixels
+    crop_ymin = 0  # in pixels
 
     # Setup the simulation
     Simulation = SNNSimulation(simulation_time=experiment_duration)
@@ -80,7 +80,7 @@ def run_experiment_fans(with_visualization=True):
     print("boisoir,jai finis le simulation!")
     i = SNN_Network.i
     if with_visualization:
-        
+
         network_dimensions = SNN_Network.get_network_dimensions()
 
         viz = Visualizer(network_dimensions=network_dimensions,
