@@ -21,8 +21,8 @@ def run_experiment_fans(with_visualization=True):
     """
     experiment_name = "Back_Front"
     experiment_duration = 10000.0  # in ms
-    dx = 6  # in pixels
-    dy = 6  # in pixels
+    dx = 7  # in pixels
+    dy = 7  # in pixels
     max_d = 4  # in pixels
     crop_xmin = 70  # in pixels
     crop_ymin = 40  # in pixels
