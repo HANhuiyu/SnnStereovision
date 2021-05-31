@@ -35,13 +35,16 @@ class Visualizer(object):
                 is_data = False
                 for line in events:
                     # skip preambles and other logged information
-                    if not b'DATA START' in line and not b'DATA END' in line:
+                    if not 'DATA START' in line and not 'DATA END' in line:
                         if not is_data:
                             continue
                         else:
                             l = line.split()
                             print(type(l[0]))
+                            print(l[0])
                             print(type(l[1]))
+                            print(l[1])
+
                             print(type(l[2]))
                             print(int(l[1]))
 
