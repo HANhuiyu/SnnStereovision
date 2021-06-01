@@ -25,7 +25,7 @@ def run_experiment_fans(with_visualization=True):
     dx = 25  # in pixels
     dy = 25  # in pixels
     max_d = 20  # in pixels
-    crop_xmin = 65  # in pixels
+    crop_xmin = 35  # in pixels
     crop_ymin = 35  # in pixels
 
     # Setup the simulation
