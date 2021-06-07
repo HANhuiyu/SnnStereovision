@@ -88,5 +88,5 @@ def run_experiment_fans(with_visualization=True):
                          sim_time=experiment_duration,
                          spikes_file="./spikes/Back_Front_{0}_spikes.dat".format(i))
         # viz.microensemble_voltage_plot(save_figure=True)
-        viz.disparity_histogram(over_time=False, save_figure=True)
+        viz.disparity_histogram(over_time=True, save_figure=True)
         # viz.scatter_animation(dimension=3, save_animation=True, rotate=True)
