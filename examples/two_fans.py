@@ -22,10 +22,10 @@ def run_experiment_fans(with_visualization=True):
     """
     experiment_name = "Back_Front"
     experiment_duration = 10000.0  # in ms
-    dx = 15  # in pixels
+    dx = 20  # in pixels
     dy = 30  # in pixels
-    max_d = 14  # in pixels
-    crop_xmin = 40  # in pixels
+    max_d = 20  # in pixels
+    crop_xmin = 45  # in pixels
     crop_ymin = 35  # in pixels
 
     # Setup the simulation
