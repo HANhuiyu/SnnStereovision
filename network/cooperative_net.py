@@ -55,7 +55,7 @@ class CooperativeNetwork(object):
             params['synaptic'] = {'wBC': w,  # -20.5: negative won't work. However keep in mind that it is inhibitory!
                                   'dBC': simulation_time_step,
                                   'wSC': w,
-                                  'dSC': 2.4,
+                                  'dSC': 2.0,
                                   'wSaB': w,
                                   'dSaB': simulation_time_step,
                                   'wSzB': w,    # same story here
