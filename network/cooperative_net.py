@@ -48,7 +48,7 @@ class CooperativeNetwork(object):
         if simulation_time_step == 0.2:
             params['neural'] = {'tau_E': 2.0,
                                 'tau_I': 2.0,
-                                'tau_mem': 1.2,
+                                'tau_mem': 2.07,
                                 'v_reset_blocker': -84.0,
                                 'v_reset_collector': -90.0}  # why -90.0?
             w = 18.0
