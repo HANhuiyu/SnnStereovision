@@ -22,11 +22,11 @@ def run_experiment_fans(with_visualization=True):
     """
     experiment_name = "Back_Front"
     experiment_duration = 10000.0  # in ms
-    dx = 60  # in pixels
-    dy = 35  # in pixels
-    max_d = 25  # in pixels
-    crop_xmin = 30  # in pixels
-    crop_ymin = 30  # in pixels
+    dx = 92  # in pixels
+    dy = 92  # in pixels
+    max_d = 24  # in pixels
+    crop_xmin = 25  # in pixels
+    crop_ymin = 10  # in pixels
 
     # Setup the simulation
     Simulation = SNNSimulation(simulation_time=experiment_duration)
