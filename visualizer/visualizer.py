@@ -4,7 +4,7 @@
 # email: gvdikov93@gmail.com
 ###
 
-
+import moviepy
 import os
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
@@ -298,7 +298,7 @@ class _Scatter(object):
         self.ax.set_autoscale_on(False)
 
     def _update_frame(self, time):
-        import moviepy
+       
         from moviepy.video.io.bindings import mplfig_to_npimage
         if self.dimension == 3:
             if self.rotate:
