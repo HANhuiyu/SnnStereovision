@@ -53,7 +53,7 @@ def run_experiment_fans(with_visualization=True):
 
     RetinaR = Retina(label="RetR", dimension_x=dx, dimension_y=dy,
                      spike_times=ExternalRetinaInput.retinaRight,
-                     record_spikes=False,
+                     record_spikes=True,
                      experiment_name=experiment_name)
 
     # Create a cooperative network for stereo vision from retinal disparity
@@ -71,8 +71,8 @@ def run_experiment_fans(with_visualization=True):
     # Store the results in a file
     #RetinaL_get_spikes=RetinaL.get_spikes(sort_by_time=True, save_spikes=True)
     SNN_Network.get_spikes(sort_by_time=True, save_spikes=True)
-    # ret_left_spikes = RetinaL.get_spikes(sort_by_time=True, save_spikes=True)
-    #ret_right_spikes = RetinaR.get_spikes(sort_by_time=True, save_spikes=True)
+    ret_left_spikes = RetinaL.get_spikes(sort_by_time=True, save_spikes=True)
+    ret_right_spikes = RetinaR.get_spikes(sort_by_time=True, save_spikes=True)
     # membrane_potential = SNN_Network.get_v(save_v=True)
 
     # Finish the simulation
