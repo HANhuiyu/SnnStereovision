@@ -18,11 +18,11 @@ def run_experiment_nst(noisy=False, with_visualization=False):
     else:
         experiment_name = "NST"
     experiment_duration = 10000  # in ms
-    dx = 6  # in pixels
-    dy = 6  # in pixels
-    max_d = 5  # in pixels
-    crop_xmin = 55  # in pixels
-    crop_ymin = 60  # in pixels
+    dx = 44  # in pixels
+    dy = 30  # in pixels
+    max_d = 24  # in pixels
+    crop_xmin = 40  # in pixels
+    crop_ymin = 50  # in pixels
 
     n_pops = 3 * (2 * (dx) * (max_d + 1)
                   - (max_d + 1) ** 2
@@ -57,7 +57,7 @@ def run_experiment_nst(noisy=False, with_visualization=False):
                      experiment_name=experiment_name)
     RetinaR = Retina(label="RetR", dimension_x=dx, dimension_y=dy,
                      spike_times=ExternalRetinaInput.retinaRight,
-                     record_spikes=False,
+                     record_spikes=True,
                      experiment_name=experiment_name)
 
     # Create a cooperative network for stereo vision from retinal disparity
@@ -73,7 +73,8 @@ def run_experiment_nst(noisy=False, with_visualization=False):
     # Store the results in a file
     #RetinaL.get_spikes(sort_by_time=True, save_spikes=True)
     SNN_Network.get_spikes(sort_by_time=True, save_spikes=True)
-
+    RetinaL.get_spikes(sort_by_time=True, save_spikes=True)
+    RetinaR.get_spikes(sort_by_time=True, save_spikes=True)
     # Finish the simulation
     Simulation.end()
 
