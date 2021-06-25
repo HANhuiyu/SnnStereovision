@@ -429,7 +429,7 @@ class CooperativeNetwork(object):
         '''
         for x in neo_per_population:
             spikes_per_population = [x.segments[0].spiketrains]
-        
+
         # for test the format of the spikes
         print(len(spikes_per_population), 'han')
         print(len(spikes_per_population[0]), 'first')

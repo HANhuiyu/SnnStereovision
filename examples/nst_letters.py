@@ -18,9 +18,9 @@ def run_experiment_nst(noisy=False, with_visualization=False):
     else:
         experiment_name = "NST"
     experiment_duration = 10000  # in ms
-    dx = 44  # in pixels
-    dy = 30  # in pixels
-    max_d = 24  # in pixels
+    dx = 6  # in pixels
+    dy = 6  # in pixels
+    max_d = 4  # in pixels
     crop_xmin = 40  # in pixels
     crop_ymin = 50  # in pixels
 
