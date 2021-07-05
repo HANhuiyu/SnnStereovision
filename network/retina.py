@@ -96,7 +96,7 @@ class Retina(object):
             x.segments[0].spiketrains for x in neo_per_population]
 
         # for test the get spike
-        for col in spikes_per_population:
+        #for col in spikes_per_population:
             #print('the col of spikes is', col)
 
         spikes = list()
