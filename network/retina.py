@@ -97,7 +97,7 @@ class Retina(object):
 
         # for test the get spike
         for col in spikes_per_population:
-            print('the col of spikes is', col)
+            #print('the col of spikes is', col)
 
         spikes = list()
         # it is 0-indexed
@@ -113,10 +113,10 @@ class Retina(object):
                     # pixel coordinates are 1-indexed
                     spikes.append((round(spike, 1), x_coord+1, y_coord+1))
 
-        print('spikes before the sort by time of retina', spikes)
+        #print('spikes before the sort by time of retina', spikes)
         if sort_by_time:
             spikes.sort(key=lambda x: x[0])
-            print('spikes of retina after sort by time', spikes)
+            #print('spikes of retina after sort by time', spikes)
         if save_spikes:
             if not os.path.exists("./spikes"):
                 os.makedirs("./spikes")

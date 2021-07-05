@@ -217,8 +217,8 @@ class CooperativeNetwork(object):
                 else:
                     nbhoodInhR[shift + shiftGlob].append(e)
                 shift += 1
-        print("the L is ", nbhoodInhL)
-        print("the R is ", nbhoodInhR)
+        #print("the L is ", nbhoodInhL)
+        #print("the R is ", nbhoodInhR)
         # generate all diagonals
         '''
         for diag in map(None, *nbhoodInhL):
@@ -234,9 +234,9 @@ class CooperativeNetwork(object):
         for i in range(0, length):
             rowlist = arr[:, i].tolist()
             sublist = list(x for x in rowlist if x != None)
-            print(type(sublist))
+            #print(type(sublist))
             nbhoodExcX.append(sublist)
-        print("the diag list is", nbhoodExcX)
+        #print("the diag list is", nbhoodExcX)
         # generate all y-axis excitation
         for x in range(0, self.dim_y):
             for e in range(1, self.cell_params['topological']['radius_e'] + 1):
