@@ -25,8 +25,8 @@ def run_experiment_fans(with_visualization=True):
     dx = 92  # in pixels
     dy = 92  # in pixels
     max_d = 24  # in pixels
-    crop_xmin = 50  # in pixels
-    crop_ymin = 25  # in pixels
+    crop_xmin = 25  # in pixels
+    crop_ymin = 10  # in pixels
 
     # Setup the simulation
     Simulation = SNNSimulation(simulation_time=experiment_duration)
