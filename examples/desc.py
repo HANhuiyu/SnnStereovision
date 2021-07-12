@@ -80,7 +80,7 @@ def run_desc(with_visualization=True):
     print("boisoir,jai finis le simulation!")
     i=SNN_Network.i
     if with_visualization:
-        from visualizer import Visualizer
+        #from visualizer import Visualizer
         network_dimensions = SNN_Network.get_network_dimensions()
 
         viz = Visualizer(network_dimensions=network_dimensions,

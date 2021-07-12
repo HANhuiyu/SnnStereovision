@@ -34,7 +34,7 @@ class ExternalHdf5InputReader():
 
         if file_path is not "":
             eventList_left=list()
-            with open(file_path["left"], 'rb') as events_left:
+            with open(file_path["left"], 'r') as events_left:
                 is_data = False
                 for line in events_left:
                     # skip preambles and other logged information
@@ -48,7 +48,7 @@ class ExternalHdf5InputReader():
                     else:
                         is_data = True
             eventList_right=list()
-            with open(file_path["right"], 'rb') as events_right:
+            with open(file_path["right"], 'r') as events_right:
                 is_data = False
                 for line in events_right:
                     # skip preambles and other logged information
