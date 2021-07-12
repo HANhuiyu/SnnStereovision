@@ -19,9 +19,9 @@ def run_desc(with_visualization=True):
     """
     experiment_name = "DESC"
     experiment_duration = 10000  # in ms
-    dx = 92 #in pixels
-    dy = 92 # in pixels
-    max_d = 24 #in pixels
+    dx = 6 #in pixels
+    dy = 6 # in pixels
+    max_d = 5 #in pixels
     #crop_xmin = 20# in pixels
     #crop_ymin = 20# in pixels
 
@@ -29,10 +29,9 @@ def run_desc(with_visualization=True):
     Simulation = SNNSimulation(simulation_time=experiment_duration)
 
     # Define the input source
-    path_to_input = {"left":os.path.join(os.path.dirname(os.path.realpath(__file__)),
-                                 "../data/input/events/spikes_left92_10000_0.dat"),
-            "right":os.path.join(os.path.dirname(os.path.realpath(__file__)),
-                                         "../data/input/events/spikes_right92_10000_0.dat")}
+    path_to_input = os.path.join(os.path.dirname(os.path.realpath(__file__)),
+                                 "../data/input/retina.npz")
+
 
     ExternalRetinaInput = ExternalHdf5InputReader(file_path=path_to_input,
                                               dim_x=dx,

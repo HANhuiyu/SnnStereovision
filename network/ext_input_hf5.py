@@ -11,6 +11,9 @@ import numpy as np
 #import hdf5plugin
 #import h5py
 import numpy as np
+import numpy as np
+import pandas as pd
+from numpy import load as load_npz_file
 #import pandas as pd
 
 
@@ -30,8 +33,17 @@ class ExternalHdf5InputReader():
         # these are the attributes which contain will contain the sorted, filtered and formatted spikes for each pixel
         self.retinaLeft = []
         self.retinaRight = []
-        print(file_path)
 
+        f= load_npz_file(file_path,allow_pickle=True)
+        retinaL = f["left"]
+        retinaR = f["right"]
+
+        retinaL = retinaL.tolist()
+        retinaR = retinaR.tolist()
+
+        self.retinaLeft = retinaL
+        self.retinaRight = retinaR
+        '''
         if file_path is not "":
             eventList_left=list()
             with open(file_path["left"], 'r') as events_left:
@@ -88,3 +100,4 @@ class ExternalHdf5InputReader():
 
         self.retinaLeft = retinaL
         self.retinaRight = retinaR
+        '''
