@@ -7,7 +7,7 @@ import numpy as np
 # where spike_time is in microseconds, position_x and position_y are pixel coordinates in the range [1, dim_x(dim_y)]
 # polarity is the event type (0 OFF, 1 ON) and retina is the retina ID (0 left, 1 right) (or the other way round :D)
 
-import tables
+#import tables
 import hdf5plugin
 import h5py
 import numpy as np
