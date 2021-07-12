@@ -89,4 +89,4 @@ def run_desc(with_visualization=True):
                          spikes_file="./spikes/DESC_{0}_spikes.dat".format(i))
         # viz.microensemble_voltage_plot(save_figure=True)
         viz.disparity_histogram(over_time=False, save_figure=True)
-        viz.scatter_animation(dimension=2, save_animation=True, rotate=True)
+        #viz.scatter_animation(dimension=2, save_animation=True, rotate=True)
