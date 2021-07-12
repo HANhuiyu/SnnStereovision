@@ -8,7 +8,7 @@ import numpy as np
 # polarity is the event type (0 OFF, 1 ON) and retina is the retina ID (0 left, 1 right) (or the other way round :D)
 
 #import tables
-import hdf5plugin
+#import hdf5plugin
 import h5py
 import numpy as np
 import pandas as pd
