@@ -10,7 +10,7 @@ import pyNN.spiNNaker as ps
 
 class SNNSimulation(object):
     # ,n_chips_required=48*6
-    def __init__(self, simulation_time=1000, simulation_time_step=0.2, threads_count=4):
+    def __init__(self, simulation_time=1000, simulation_time_step=0.1, threads_count=4):
         self.simulation_time = simulation_time
         self.time_step = simulation_time_step
         # setup timestep of simulation and minimum and maximum synaptic delays
