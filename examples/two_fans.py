@@ -31,7 +31,7 @@ def run_experiment_fans(with_visualization=True):
     # Setup the simulation
     Simulation = SNNSimulation(simulation_time=experiment_duration)
     ps.set_number_of_neurons_per_core(ps.SpikeSourceArray,92)
-    ps.set_number_of_neurons_per_core(ps.IF_curr_exp,92 )
+    #ps.set_number_of_neurons_per_core(ps.IF_curr_exp,92 )
 
     # Define the input source
     path_to_input = os.path.join(os.path.dirname(os.path.realpath(__file__)),
