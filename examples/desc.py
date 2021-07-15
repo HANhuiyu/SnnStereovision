@@ -21,7 +21,7 @@ def run_desc(with_visualization=True):
     experiment_duration = 100  # in ms
     dx = 640 #in pixels
     dy = 480 # in pixels
-    max_d = 80 #in pixels
+    max_d = 92 #in pixels
     #crop_xmin = 20# in pixels
     #crop_ymin = 20# in pixels
 
