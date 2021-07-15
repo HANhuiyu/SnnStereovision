@@ -17,7 +17,7 @@ from numpy import load as load_npz_file
 #import pandas as pd
 
 
-sim_time = 10000 # in ms
+
 
 class ExternalHdf5InputReader():
     def __init__(self,
@@ -28,7 +28,7 @@ class ExternalHdf5InputReader():
                  #crop_ymax=-1,
                  dim_x=1,
                  dim_y=1,
-                 sim_time=1000,
+                 #sim_time=1000,
                  is_rawdata_time_in_ms=False):
         # these are the attributes which contain will contain the sorted, filtered and formatted spikes for each pixel
         self.retinaLeft = []
@@ -40,6 +40,7 @@ class ExternalHdf5InputReader():
 
         retinaL = retinaL.tolist()
         retinaR = retinaR.tolist()
+        print("the length is:",len(retinaL))
 
         self.retinaLeft = retinaL
         self.retinaRight = retinaR

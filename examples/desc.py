@@ -18,9 +18,9 @@ def run_desc(with_visualization=True):
 
     """
     experiment_name = "DESC"
-    experiment_duration = 5000  # in ms
-    dx = 92 #in pixels
-    dy = 92 # in pixels
+    experiment_duration = 100  # in ms
+    dx = 640 #in pixels
+    dy = 480 # in pixels
     max_d = 80 #in pixels
     #crop_xmin = 20# in pixels
     #crop_ymin = 20# in pixels
@@ -30,7 +30,7 @@ def run_desc(with_visualization=True):
 
     # Define the input source
     path_to_input = os.path.join(os.path.dirname(os.path.realpath(__file__)),
-                                 "../data/input/retina92_5s.npz")
+                                 "../data/input/vga100.npz")
 
 
     ExternalRetinaInput = ExternalHdf5InputReader(file_path=path_to_input,
@@ -40,7 +40,7 @@ def run_desc(with_visualization=True):
                                               #crop_xmax=crop_xmin + dx,
                                               #crop_ymin=crop_ymin,
                                               #crop_ymax=crop_ymin + dy,
-                                              sim_time=experiment_duration,
+                                              #sim_time=experiment_duration,
                                               is_rawdata_time_in_ms=False)
     #print(ExternalRetinaInput.retinaLeft)
     #print('it is not empty,right?')
