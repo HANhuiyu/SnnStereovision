@@ -19,9 +19,9 @@ def run_desc(with_visualization=True):
     """
     experiment_name = "DESC"
     experiment_duration = 100  # in ms
-    dx = 640 #in pixels
-    dy = 480 # in pixels
-    max_d = 92 #in pixels
+    dx = 10 #in pixels
+    dy = 10 # in pixels
+    max_d = 7 #in pixels
     #crop_xmin = 20# in pixels
     #crop_ymin = 20# in pixels
 
@@ -30,7 +30,7 @@ def run_desc(with_visualization=True):
 
     # Define the input source
     path_to_input = os.path.join(os.path.dirname(os.path.realpath(__file__)),
-                                 "../data/input/vga100.npz")
+                                 "../data/input/cropEg.npz")
 
 
     ExternalRetinaInput = ExternalHdf5InputReader(file_path=path_to_input,
