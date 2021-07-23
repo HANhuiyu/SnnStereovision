@@ -469,7 +469,7 @@ class CooperativeNetwork(object):
                 i = i+1
                 for spike in spiketrains:
                     spikes.append(
-                        (round(spike, 1), x_coord+1, y_coord+1, disp))
+                        (round(spike, 1), x_coord, y_coord, disp))# attention: here because the dsec dataset: have 0-pixel
 
                     # y_coord=spiketrains.index(spike) # and then should change with how to choice the y
                     # i think here is not right and i should change it

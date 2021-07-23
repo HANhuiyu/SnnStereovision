@@ -111,7 +111,7 @@ class Retina(object):
                 i = i+1
                 for spike in spiketrains:
                     # pixel coordinates are 1-indexed
-                    spikes.append((round(spike, 1), x_coord+1, y_coord+1))
+                    spikes.append((round(spike, 1), x_coord, y_coord))# here attention: because DSEC event data has 0-pixel
 
         #print('spikes before the sort by time of retina', spikes)
         if sort_by_time:
