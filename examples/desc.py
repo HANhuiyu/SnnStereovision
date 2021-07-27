@@ -18,7 +18,7 @@ def run_desc(with_visualization=True):
 
     """
     experiment_name = "DESC"
-    experiment_duration = 666  # in ms
+    experiment_duration = 6380  # in ms
     dx = 87 #in pixels
     dy = 65 # in pixels
     max_d = 40 #in pixels
