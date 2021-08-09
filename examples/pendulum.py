@@ -40,11 +40,11 @@ def run_experiment_pendulum(with_visualization=False):
     # Create two instances of Retinas with the respective inputs
     RetinaL = Retina(label="RetL", dimension_x=dx, dimension_y=dy,
                      spike_times=ExternalRetinaInput.retinaLeft,
-                     record_spikes=False,
+                     record_spikes=True,
                      experiment_name=experiment_name)
     RetinaR = Retina(label="RetR", dimension_x=dx, dimension_y=dy,
                      spike_times=ExternalRetinaInput.retinaRight,
-                     record_spikes=False,
+                     record_spikes=True,
                      experiment_name=experiment_name)
 
     # Create a cooperative network for stereo vision from retinal disparity
@@ -59,10 +59,13 @@ def run_experiment_pendulum(with_visualization=False):
 
     # Store the results in a file
     SNN_Network.get_spikes(sort_by_time=True, save_spikes=True)
+    ret_left_spikes = RetinaL.get_spikes(sort_by_time=True, save_spikes=True)
+    ret_right_spikes = RetinaR.get_spikes(sort_by_time=True, save_spikes=True)
 
     # Finish the simulation
     Simulation.end()
-
+    print("fint le simulation")
+    '''
     if with_visualization:
         from visualizer import Visualizer
         network_dimensions = SNN_Network.get_network_dimensions()
@@ -73,3 +76,4 @@ def run_experiment_pendulum(with_visualization=False):
         # viz.microensemble_voltage_plot(save_figure=True)
         viz.disparity_histogram(over_time=True, save_figure=True)
         # viz.scatter_animation(dimension=3, save_animation=True, rotate=True)
+    '''
