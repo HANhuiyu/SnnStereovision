@@ -4,8 +4,15 @@
 # email: gvdikov93@gmail.com
 ###
 
-from network import CooperativeNetwork, Retina, ExternalInputReader, SNNSimulation
+import network
+#from network import CooperativeNetwork, Retina, ExternalInputReader, SNNSimulation
+from network.cooperative_net import *
+from network.simulation import *
+from network.ext_input import *
+from network.retina import *
+from visualizer.visualizer import *
 import os
+
 
 
 def run_experiment_pendulum(with_visualization=False):
@@ -23,6 +30,7 @@ def run_experiment_pendulum(with_visualization=False):
 
     # Setup the simulation
     Simulation = SNNSimulation(simulation_time=experiment_duration)
+    ps.set_number_of_neurons_per_core(ps.SpikeSourceArray,92)
 
     # Define the input source
     path_to_input = os.path.join(os.path.dirname(os.path.realpath(__file__)),
