@@ -105,8 +105,8 @@ class ExternalInputReader():
         print("the length of the eventlist is ", len(eventList))
         # process each event in the event list and format the time and position. Distribute among the retinas respectively
         for evt in eventList:
-            x = evt[1] - 1
-            y = evt[2] - 1
+            x = evt[1]
+            y = evt[2] 
             if not is_rawdata_time_in_ms:
                 # retina event time steps are in micro seconds, so convert to milliseconds
                 t = evt[0] / 1000.0
