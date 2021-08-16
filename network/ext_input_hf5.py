@@ -42,8 +42,8 @@ class ExternalHdf5InputReader():
         retinaR = retinaR.tolist()
         print("the length is:",len(retinaL))
 
-        self.retinaLeft = retinaL
-        self.retinaRight = retinaR
+        self.retinaLeft = retinaR
+        self.retinaRight = retinaL
         '''
         if file_path is not "":
             eventList_left=list()
